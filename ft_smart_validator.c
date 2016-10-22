@@ -41,7 +41,7 @@ static int		ft_smart_shape_validator(int *tmp, int n)
 //	printf("%d\n", tmp[9]);
 //	printf("%d", tmp[10]);
 //	printf("%d", tmp[11]);
-//	printf("%d", tmp[12]);
+//	printf("%d", tmp[12]);coordinates
 //	printf("%d", tmp[13]);
 //	printf("%d\n", tmp[14]);
 //	printf("%d", tmp[15]);

@@ -20,6 +20,7 @@ set(SOURCE_FILES
     ft_strnew.c
     ft_tetro_splitter.c
     ft_validator.c
+	ft_tetriminos.c
     libft.h
     main.c)
 
