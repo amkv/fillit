@@ -33,13 +33,13 @@ typedef	struct	s_list
 }				t_list;
 */
 
-typedef struct tetrimono
+typedef struct  tetro
 {
     int         p1;
     int         p2;
     int         p3;
     int         p4;
-}               tet;
+}               tetrimino;
 
 
 /*
@@ -51,8 +51,10 @@ char			*ft_readfile(char *str);
 void			ft_exit_error(int i);
 int				ft_validator(const char *map);
 char			**ft_tetro_splitter(char *str, int size);
-void			ft_smart_validator(char **split, int size);
-int            *ft_grid();
+void            ft_smart_validator(char **split, int size);
+
+tetrimino        **ft_tetriminos(char** split, int size);
+int 			*ft_grid(tetrimino **tetriminos, int size);
 
 void			ft_ptest(void);
 char			*ft_strendline(char *str);
