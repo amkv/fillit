@@ -41,27 +41,25 @@ void			ft_console(char *name)
 	ft_smart_validator(split, size);
 	tetriminos = ft_tetriminos(split, size);
 	//-----------------------------------------------------
-	//	for (int d = 0; d < size; d++)
-	//	{
-	//		printf("%d", tetriminos[d]->p1);
-	//		printf("\t");
-	//		printf("%d", tetriminos[d]->p2);
-	//		printf("\t");
-	//		printf("%d", tetriminos[d]->p3);
-	//		printf("\t");
-	//		printf("%d", tetriminos[d]->p4);
-	//		printf("\t");
-	//		printf("\n");
-	//	}
+//		for (int d = 0; d < size; d++)
+//		{
+//			printf("%d", tetriminos[d]->p1);
+//			printf("\t");
+//			printf("%d", tetriminos[d]->p2);
+//			printf("\t");
+//			printf("%d", tetriminos[d]->p3);
+//			printf("\t");
+//			printf("%d", tetriminos[d]->p4);
+//			printf("\t");
+//			printf("\n");
+//		}
 	//----------------------------------------------------
-
 	grid = ft_grid(tetriminos, size);
+	//----------------------------------------------------
+	for (int m = 0; m < 16; m++)
+		printf("%d\n", grid[m]);
 
 
-//	for (int m = 0; m < 16; m++)
-//		printf("%d\n", grid[m]);
-
-
-	printf("tetriminos: %d\n", size);
+//	printf("tetriminos: %d\n", size);
 	free(map);
 }

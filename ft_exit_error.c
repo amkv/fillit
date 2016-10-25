@@ -36,7 +36,9 @@ void		ft_exit_error(int i)
 	e[17] = "error: text";
 	ft_putstr(e[i]);
 	ft_putchar('\n');
-	/* ft_putstr("error\n");
-	n = 0; */
+	/*
+	ft_putstr("error\n");
+	n = 0;
+	*/
 	exit(1);
 }

@@ -29,27 +29,6 @@ static void		ft_smart_valtetrimino(char *str)
 
 static int		ft_smart_shape_validator(int *tmp, int n)
 {
-//	printf("%d", tmp[0]);
-//	printf("%d", tmp[1]);
-//	printf("%d", tmp[2]);
-//	printf("%d", tmp[3]);
-//	printf("%d\n", tmp[4]);
-//	printf("%d", tmp[5]);
-//	printf("%d", tmp[6]);
-//	printf("%d", tmp[7]);
-//	printf("%d", tmp[8]);
-//	printf("%d\n", tmp[9]);
-//	printf("%d", tmp[10]);
-//	printf("%d", tmp[11]);
-//	printf("%d", tmp[12]);coordinates
-//	printf("%d", tmp[13]);
-//	printf("%d\n", tmp[14]);
-//	printf("%d", tmp[15]);
-//	printf("%d", tmp[16]);
-//	printf("%d", tmp[17]);
-//	printf("%d", tmp[18]);
-//	printf("%d\n\n", tmp[19]);
-
 	while (tmp[n] != 1)
 		n++;
 	if ((tmp[n] + tmp[n + 5] + tmp[n + 10] + tmp[n + 15] == 4) ||

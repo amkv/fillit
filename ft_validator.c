@@ -16,9 +16,7 @@ static int		ft_val_lastline(const char *map)
 {
 	const char	*last;
 	const char	*chr;
-	const char	*tmp;
 
-	tmp = map;
 	while (*map)
 		map++;
 	last = map;
@@ -28,13 +26,7 @@ static int		ft_val_lastline(const char *map)
 	if ((*chr == '.' || *chr == '#') && *last == '\n' && *map == '\0')
 		return (1);
 	else
-	{
-		printf("%s\n", tmp);
-		printf("%s\n", "--------------");
-		printf("chr:\"%c%s    lst:\"%c%s   end:\"%c%s\n", *chr, "\"", *last, "\"", *map, "\"");
-		printf("%s\n", "--------------");
 		return (0);
-	}
 }
 
 static char		*ft_val_checkline(char *map)
@@ -49,7 +41,7 @@ static char		*ft_val_checkline(char *map)
 		chr++;
 		map++;
 	}
-	if (chr < 5 || chr > 5) // chr != 4
+	if (chr < 5 || chr > 5)
 		ft_exit_error(4);
 	return (map);
 }

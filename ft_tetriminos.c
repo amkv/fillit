@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-static tetrimino         *ft_new_tetrimino(int p1, int p2, int p3, int p4)
+static tetrimino		*ft_new_tetrimino(int p1, int p2, int p3, int p4)
 {
-	tetrimino     *tetro;
+	tetrimino			*tetro;
 
 	tetro = (tetrimino*)malloc(sizeof(tetrimino));
 	tetro->p1 = p1;
@@ -24,12 +24,12 @@ static tetrimino         *ft_new_tetrimino(int p1, int p2, int p3, int p4)
 	return (tetro);
 }
 
-static tetrimino       *ft_tetro_converter(char *tetrochar)
+static tetrimino		*ft_tetro_converter(char *tetrochar)
 {
-	tetrimino   *tetro;
-	int         shape[4];
-	int         coordinate;
-	int         index;
+	tetrimino			*tetro;
+	int					shape[4];
+	int					coordinate;
+	int					index;
 
 	index = 0;
 	coordinate = 0;
@@ -49,10 +49,10 @@ static tetrimino       *ft_tetro_converter(char *tetrochar)
 	return (tetro);
 }
 
-tetrimino        **ft_tetriminos(char** split, int size)
+tetrimino				**ft_tetriminos(char **split, int size)
 {
-	tetrimino    **shapes;
-	int          index;
+	tetrimino			**shapes;
+	int					index;
 
 	shapes = (tetrimino**)malloc(sizeof(tetrimino) * size);
 	index = 0;
