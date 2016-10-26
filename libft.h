@@ -56,6 +56,7 @@ tetrimino       **ft_tetriminos(char** split, int size);
 int				*ft_grid(tetrimino **tetriminos, int size);
 void            ft_putgrid(int *grid, int size);
 
+int             ft_sqrt(int num);
 void			ft_ptest(void);
 char			*ft_strendline(char *str);
 

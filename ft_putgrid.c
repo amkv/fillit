@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int     ft_sqrt(int num)
+int     ft_sqrt(int num)
 {
 	int sqr;
 

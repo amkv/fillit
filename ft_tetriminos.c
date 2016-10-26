@@ -12,6 +12,42 @@
 
 #include "libft.h"
 
+static tetrimino *ft_set_minus_value(tetrimino *tetro, int num)
+{
+	tetro->p1 -= num;
+	tetro->p2 -= num;
+	tetro->p3 -= num;
+	tetro->p4 -= num;
+	return (tetro);
+}
+
+static  tetrimino   *ft_move_to_corner(tetrimino *shape)
+{
+	int     index;
+	int     yesno;
+
+	index = 16;
+	yesno = 1;
+	while (index > 0 && yesno == 1)
+	{
+		if (shape->p1 == 0 || shape->p2 == 4 || shape->p3 == 8 || shape->p1 == 12)
+			yesno = 0;
+		else
+			ft_set_minus_value(shape, 1);
+		index--;
+	}
+	index = 16;
+	while (index > 0 && yesno == 0)
+	{
+		if (shape->p1 == 0 || shape->p2 == 1 || shape->p3 == 2 || shape->p1 == 3)
+			yesno = 1;
+		else
+			ft_set_minus_value(shape, 4);
+		index--;
+	}
+	return (shape);
+}
+
 static tetrimino	*ft_new_tetrimino(int p1, int p2, int p3, int p4, char c)
 {
 	tetrimino		*tetro;
@@ -62,6 +98,7 @@ tetrimino			**ft_tetriminos(char **split, int size)
 	while (size > 0)
 	{
 		shapes[index] = ft_tetro_converter(split[index], letter[index]);
+		shapes[index] = ft_move_to_corner(shapes[index]);
 		size--;
 		index++;
 	}
