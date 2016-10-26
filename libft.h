@@ -11,9 +11,7 @@
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
-
 # define LIBFT_H
-
 # define BUF_SIZE 4096
 
 # include <stdlib.h> /* malloc free */
@@ -39,6 +37,7 @@ typedef struct  tetro
     int         p2;
     int         p3;
     int         p4;
+	char        letter;
 }               tetrimino;
 
 
@@ -53,8 +52,9 @@ int				ft_validator(const char *map);
 char			**ft_tetro_splitter(char *str, int size);
 void            ft_smart_validator(char **split, int size);
 
-tetrimino        **ft_tetriminos(char** split, int size);
+tetrimino       **ft_tetriminos(char** split, int size);
 int				*ft_grid(tetrimino **tetriminos, int size);
+void            ft_putgrid(int *grid, int size);
 
 void			ft_ptest(void);
 char			*ft_strendline(char *str);

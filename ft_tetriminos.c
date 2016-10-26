@@ -12,24 +12,25 @@
 
 #include "libft.h"
 
-static tetrimino		*ft_new_tetrimino(int p1, int p2, int p3, int p4)
+static tetrimino	*ft_new_tetrimino(int p1, int p2, int p3, int p4, char c)
 {
-	tetrimino			*tetro;
+	tetrimino		*tetro;
 
 	tetro = (tetrimino*)malloc(sizeof(tetrimino));
 	tetro->p1 = p1;
 	tetro->p2 = p2;
 	tetro->p3 = p3;
 	tetro->p4 = p4;
+	tetro->letter = c;
 	return (tetro);
 }
 
-static tetrimino		*ft_tetro_converter(char *tetrochar)
+static tetrimino	*ft_tetro_converter(char *tetrochar, char c)
 {
-	tetrimino			*tetro;
-	int					shape[4];
-	int					coordinate;
-	int					index;
+	tetrimino		*tetro;
+	int				shape[4];
+	int				coordinate;
+	int				index;
 
 	index = 0;
 	coordinate = 0;
@@ -45,20 +46,22 @@ static tetrimino		*ft_tetro_converter(char *tetrochar)
 		tetrochar++;
 		coordinate++;
 	}
-	tetro = ft_new_tetrimino(shape[0], shape[1], shape[2], shape[3]);
+	tetro = ft_new_tetrimino(shape[0], shape[1], shape[2], shape[3], c);
 	return (tetro);
 }
 
-tetrimino				**ft_tetriminos(char **split, int size)
+tetrimino			**ft_tetriminos(char **split, int size)
 {
-	tetrimino			**shapes;
-	int					index;
+	tetrimino		**shapes;
+	int				index;
+	char            *letter;
 
 	shapes = (tetrimino**)malloc(sizeof(tetrimino) * size);
 	index = 0;
+	letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	while (size > 0)
 	{
-		shapes[index] = ft_tetro_converter(split[index]);
+		shapes[index] = ft_tetro_converter(split[index], letter[index]);
 		size--;
 		index++;
 	}
