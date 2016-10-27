@@ -26,6 +26,7 @@ set(SOURCE_FILES
 	ft_putgrid.c
 	ft_tetro_move.c
 	ft_border.c
+	ft_fillit.c
     libft.h
     main.c)
 

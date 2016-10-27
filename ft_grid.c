@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_grid.c                                          :+:      :+:    :+:   */
+/*   ft_newgrid.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akalmyko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,62 +12,31 @@
 
 #include "libft.h"
 
-//static int 		*ft_fill_grid(int *grid, tetrimino **tetriminos, int size);
-static int             ft_check_the_grid(int *grid, tetrimino *tetriminos, int size);
-static int      *ft_fill_grid(int *grid, tetrimino **tetriminos, int size, int gridsize);
-
-
-
-
-int				*ft_grid(tetrimino **tetriminos, int size)
+int				*ft_newgrid(int size)
 {
 	int		    *grid;
-	int	        gridsize;
 	int		    index;
-	int         temp;
+	int         gridsize;
 
 	(size < 4) ? (gridsize = 16) : (gridsize = size * size);
-	temp = gridsize;
 	index = 0;
-	grid = (int*)malloc(sizeof(int) * temp);
-	while (temp > 0)
+	grid = (int*)malloc(sizeof(int) * gridsize);
+	while (gridsize > 0)
 	{
 		grid[index] = 0;
 		index++;
-		temp--;
-	}
-	grid = ft_fill_grid(grid, tetriminos, size, gridsize);
-	return (grid);
-}
-
-static int *ft_fill_grid(int *grid, tetrimino **tetriminos, int size, int gridsize)
-{
-	int     index;
-
-	index = 0;
-	while (size > 0)
-	{
-		ft_check_the_grid(grid, tetriminos[index], gridsize);
-		size--;
+		gridsize--;
 	}
 	return (grid);
 }
 
-static int     ft_check_the_grid(int *grid, tetrimino *tetro, int gridsize)
-{
-	int *border;
-	int index;
-	int side;
-	tetro = NULL;
-	grid = NULL;
 
-	side = 4;
-	border = ft_grid_border(gridsize, side);
-	index = 0;
-	return (1);
-}
+// left 2
+// up 2
+// right 3
+// down 4
 
-
+// if (tetro->p1 != br[0] || tetro->p2 != br[1] || tetro->p3 != br[2] tetro->p4 != br[3])
 
 //static int 		*ft_fill_grid(int *grid, tetrimino **tetriminos, int size)
 //{

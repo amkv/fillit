@@ -22,7 +22,6 @@ void			ft_console(char *name)
 
 	map = ft_readfile(name);
 	//ft_putstr(map);
-
 	size = ft_validator(map);
 	split = ft_tetro_splitter(map, size);
 	//----------------------------------------------------
@@ -54,12 +53,13 @@ void			ft_console(char *name)
 //			printf("\n");
 //		}
 	//----------------------------------------------------
-	grid = ft_grid(tetriminos, size);
+	grid = ft_newgrid(size);
 	//----------------------------------------------------
-//	printf("%d\n", grid[1000]);
-
+	grid = ft_fillit(grid, tetriminos, size);
+	//----------------------------------------------------
 	ft_putgrid(grid, size);
-//	printf("tetriminos: %d\n", size);
-	free(map);
+	//----------------------------------------------------
+	free(map); // поднять выше там где кончается использование
 	free(grid);
+	//free(**tetriminos);
 }
