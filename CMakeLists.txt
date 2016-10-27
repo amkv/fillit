@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.6)
 project(fillit)
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I. -fsanitize=address -Wall -Werror -Wextra")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -fsanitize=address -O1 -fno-omit-frame-pointer -Wall -Werror -Wextra")
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror -Wextra")
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
 
@@ -25,6 +25,7 @@ set(SOURCE_FILES
 	ft_grid.c
 	ft_putgrid.c
 	ft_tetro_move.c
+	ft_border.c
     libft.h
     main.c)
 

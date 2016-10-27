@@ -55,6 +55,7 @@ void            ft_smart_validator(char **split, int size);
 tetrimino       **ft_tetriminos(char** split, int size);
 int				*ft_grid(tetrimino **tetriminos, int size);
 void            ft_putgrid(int *grid, int size);
+int             *ft_grid_border(int gridsize, int s);
 
 int             ft_sqrt(int num);
 void			ft_ptest(void);

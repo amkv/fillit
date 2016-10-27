@@ -16,7 +16,7 @@ int			main(int argc, char **argv)
 {
 	if (argc != 2)
 		ft_exit_error(2);
-	printf("\n");
+	//printf("\n");
 	ft_console(argv[1]);
 	/* ft_putstr("\nABB.\nABB.\nACC.\nACC.\n\n"); */
 //	ft_ptest();

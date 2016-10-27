@@ -56,7 +56,7 @@ void			ft_console(char *name)
 	//----------------------------------------------------
 	grid = ft_grid(tetriminos, size);
 	//----------------------------------------------------
-
+//	printf("%d\n", grid[1000]);
 
 	ft_putgrid(grid, size);
 //	printf("tetriminos: %d\n", size);

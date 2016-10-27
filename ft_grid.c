@@ -12,8 +12,12 @@
 
 #include "libft.h"
 
-static int 		*ft_fill_grid(int *grid, tetrimino **tetriminos, int size);
-int             ft_check_the_grid(int *grid, tetrimino *tetriminos, int size);
+//static int 		*ft_fill_grid(int *grid, tetrimino **tetriminos, int size);
+static int             ft_check_the_grid(int *grid, tetrimino *tetriminos, int size);
+static int      *ft_fill_grid(int *grid, tetrimino **tetriminos, int size, int gridsize);
+
+
+
 
 int				*ft_grid(tetrimino **tetriminos, int size)
 {
@@ -22,9 +26,7 @@ int				*ft_grid(tetrimino **tetriminos, int size)
 	int		    index;
 	int         temp;
 
-	gridsize = size * size;
-	if (gridsize <= 16)
-		gridsize = 16;
+	(size < 4) ? (gridsize = 16) : (gridsize = size * size);
 	temp = gridsize;
 	index = 0;
 	grid = (int*)malloc(sizeof(int) * temp);
@@ -34,56 +36,82 @@ int				*ft_grid(tetrimino **tetriminos, int size)
 		index++;
 		temp--;
 	}
-	grid = ft_fill_grid(grid, tetriminos, size);
+	grid = ft_fill_grid(grid, tetriminos, size, gridsize);
 	return (grid);
 }
 
-
-
-
-static int 		*ft_fill_grid(int *grid, tetrimino **tetriminos, int size)
+static int *ft_fill_grid(int *grid, tetrimino **tetriminos, int size, int gridsize)
 {
-	int 		amount;
-	int 		index;
-	int         gridsize;
+	int     index;
 
-	amount = 0;
-
-	(size <= 4 ) ? (gridsize = 16) : (gridsize = size * size);
-	while (amount < size)
+	index = 0;
+	while (size > 0)
 	{
-		index = 0;
-		if (ft_check_the_grid(grid, tetriminos[amount], size) == 1)
-		{
-			while (index < gridsize)
-			{
-				if (tetriminos[amount]->p1 == index)
-					grid[index] = tetriminos[amount]->letter;
-				if (tetriminos[amount]->p2 == index)
-					grid[index] = tetriminos[amount]->letter;
-				if (tetriminos[amount]->p3 == index)
-					grid[index] = tetriminos[amount]->letter;
-				if (tetriminos[amount]->p4 == index)
-					grid[index] = tetriminos[amount]->letter;
-				index++;
-			}
-		}
-		else
-		{
-			printf("no\n");
-		}
-		amount++;
+		ft_check_the_grid(grid, tetriminos[index], gridsize);
+		size--;
 	}
 	return (grid);
 }
 
-int             ft_check_the_grid(int *grid, tetrimino *tetriminos, int size)
+static int     ft_check_the_grid(int *grid, tetrimino *tetro, int gridsize)
 {
+	int *border;
+	int index;
+	int side;
+	tetro = NULL;
 	grid = NULL;
-	tetriminos = NULL;
-	size = 0;
+
+	side = 4;
+	border = ft_grid_border(gridsize, side);
+	index = 0;
 	return (1);
 }
+
+
+
+//static int 		*ft_fill_grid(int *grid, tetrimino **tetriminos, int size)
+//{
+//	int 		amount;
+//	int 		index;
+//	int         gridsize;
+//
+//	amount = 0;
+//
+//	(size <= 4 ) ? (gridsize = 16) : (gridsize = size * size);
+//	while (amount < size)
+//	{
+//		index = 0;
+//		if (ft_check_the_grid(grid, tetriminos[amount], size) == 1)
+//		{
+//			while (index < gridsize)
+//			{
+//				if (tetriminos[amount]->p1 == index)
+//					grid[index] = tetriminos[amount]->letter;
+//				if (tetriminos[amount]->p2 == index)
+//					grid[index] = tetriminos[amount]->letter;
+//				if (tetriminos[amount]->p3 == index)
+//					grid[index] = tetriminos[amount]->letter;
+//				if (tetriminos[amount]->p4 == index)
+//					grid[index] = tetriminos[amount]->letter;
+//				index++;
+//			}
+//		}
+//		else
+//		{
+//			printf("no\n");
+//		}
+//		amount++;
+//	}
+//	return (grid);
+//}
+
+//int             ft_check_the_grid(int *grid, tetrimino *tetriminos, int size)
+//{
+//	grid = NULL;
+//	tetriminos = NULL;
+//	size = 0;
+//	return (1);
+//}
 
 //static int      ft_place_tetrimino(tetrimino tetro, )
 
