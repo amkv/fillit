@@ -13,19 +13,32 @@
 #include "libft.h"
 
 static int      ft_check_grid_space(int *g, tetrimino *t);
+static int		*ft_place_tetro(int *grid, tetrimino *tetro);
+static tetrimino   *ft_move_right(tetrimino *tetro);
 
 int         *ft_fillit(int *grid, tetrimino **tetriminos, int size)
 {
-	int     index;
+	int     i;
 
-	index = 0;
+	i = 0;
 	while (size > 0)
 	{
-		if (ft_check_grid_space(grid, tetriminos[index]) == 1)
+		if (ft_check_grid_space(grid, tetriminos[i]) == 1)
+		{
 			printf("yes\n");
+			grid = ft_place_tetro(grid, tetriminos[i]);
+		}
 		else
-			printf("no\n");
+		{
+			while (ft_check_grid_space(grid, tetriminos[i]) != 1)
+			{
+				printf("no\n");
+				ft_move_right(tetriminos[i]);
+			}
+			grid = ft_place_tetro(grid, tetriminos[i]);
+		}
 		size--;
+		i++;
 	}
 	return (grid);
 }
@@ -36,4 +49,22 @@ static int     ft_check_grid_space(int *g, tetrimino *t)
 		return (1);
 	else
 		return (-1);
+}
+
+static int		*ft_place_tetro(int *grid, tetrimino *tetro)
+{
+	grid[tetro->p1] = tetro->letter;
+	grid[tetro->p2] = tetro->letter;
+	grid[tetro->p3] = tetro->letter;
+	grid[tetro->p4] = tetro->letter;
+	return (grid);
+}
+
+static tetrimino   *ft_move_right(tetrimino *tetro)
+{
+	tetro->p1 += 1;
+	tetro->p2 += 1;
+	tetro->p3 += 1;
+	tetro->p4 += 1;
+	return (tetro);
 }

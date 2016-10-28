@@ -12,15 +12,75 @@
 
 #include "libft.h"
 
-static int      *ft_grid_border_left(int start, int end, int side);
-static int      *ft_grid_border_right(int start, int end, int side);
-static int      *ft_grid_border_up(int start, int side);
-static int      *ft_grid_border_down(int start, int end, int side);
-
-int             *ft_grid_border(int gridsize, int s)
+static int		*ft_grid_border_left(int start, int end, int side)
 {
-	int         side;
-	int         border[4];
+	int			index;
+	int			*border_left;
+
+	index = 0;
+	border_left = (int*)malloc(sizeof(int) * side);
+	printf("border_left: ");
+	while (start != end + side)
+	{
+		border_left[index] = start;
+		start += side;
+		index++;
+	}
+	return (border_left);
+}
+
+static int		*ft_grid_border_up(int start, int side)
+{
+	int			index;
+	int			*border_up;
+
+	index = 0;
+	border_up = (int*)malloc(sizeof(int) * side);
+	while (start != side)
+	{
+		border_up[index] = start;
+		start++;
+		index++;
+	}
+	return (border_up);
+}
+
+static int		*ft_grid_border_right(int start, int end, int side)
+{
+	int			index;
+	int			*border_right;
+
+	index = 0;
+	border_right = (int*)malloc(sizeof(int) * side);
+	while (start != end + side)
+	{
+		border_right[index] = start;
+		start += side;
+		index++;
+	}
+	return (border_right);
+}
+
+static int		*ft_grid_border_down(int start, int end, int side)
+{
+	int			index;
+	int			*border_down;
+
+	index = 0;
+	border_down = (int*)malloc(sizeof(int) * side);
+	while (start != end + 1)
+	{
+		border_down[index] = start;
+		start++;
+		index++;
+	}
+	return (border_down);
+}
+
+int				*ft_grid_border(int gridsize, int s)
+{
+	int			side;
+	int			border[4];
 
 	side = ft_sqrt(gridsize);
 	border[0] = 0; // левый верхний
@@ -36,69 +96,4 @@ int             *ft_grid_border(int gridsize, int s)
 	if (s == 4)
 		return (ft_grid_border_down(border[2], border[3], side)); // down 4
 	return (NULL);
-}
-
-static int      *ft_grid_border_left(int start, int end, int side)
-{
-	int         index;
-	int         *border_left;
-
-	index = 0;
-	border_left = (int*)malloc(sizeof(int) * side);
-	printf("border_left: ");
-	while (start != end + side)
-	{
-		border_left[index] = start;
-		start += side;
-		index++;
-	}
-	return (border_left);
-}
-
-static int      *ft_grid_border_up(int start, int side)
-{
-	int         index;
-	int         *border_up;
-
-	index = 0;
-	border_up = (int*)malloc(sizeof(int) * side);
-	while (start != side)
-	{
-		border_up[index] = start;
-		start++;
-		index++;
-	}
-	return (border_up);
-}
-
-static int      *ft_grid_border_right(int start, int end, int side)
-{
-	int         index;
-	int         *border_right;
-
-	index = 0;
-	border_right = (int*)malloc(sizeof(int) * side);
-	while (start != end + side)
-	{
-		border_right[index] = start;
-		start += side;
-		index++;
-	}
-	return (border_right);
-}
-
-static int      *ft_grid_border_down(int start, int end, int side)
-{
-	int         index;
-	int         *border_down;
-
-	index = 0;
-	border_down = (int*)malloc(sizeof(int) * side);
-	while (start != end + 1)
-	{
-		border_down[index] = start;
-		start++;
-		index++;
-	}
-	return (border_down);
 }
