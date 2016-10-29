@@ -42,8 +42,6 @@ tetrimino   *ft_move_forward(tetrimino *t, int gridsize)
 	{
 		t = ft_move_to_left_border(t, gridsize);
 		t = ft_move_to_down(t, gridsize);
-		if (t == NULL)
-			return (NULL);
 	}
 	//free (br);
 	return (t);
@@ -68,8 +66,8 @@ static tetrimino *ft_move_to_down(tetrimino *t, int gridsize)
 		ft_tetro_set_value(t, ft_sqrt(gridsize)); // опускаю на одну строчку вниз (вычисляя side - шаг)
 	else
 	{
-		printf("все закончилось\n");
-		return (NULL);
+		//printf("все закончилось\n");
+		return (t);
 	}
 	//free (br);
 	return (t);
