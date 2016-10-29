@@ -14,15 +14,18 @@
 
 static int      	ft_check_grid_space(int *g, tetrimino *t);
 static int			*ft_place_tetro(int *grid, tetrimino *tetro);
-static tetrimino   	*ft_move_right(tetrimino *t, int gridsize, int right);
+static tetrimino   	*ft_move_forward(tetrimino *t, int gridsize, int right);
+static tetrimino 	*ft_move_to_left_border(tetrimino *t, int gridsize);
+static	void 		ft_puttetro(tetrimino *t);
 
 int         *ft_fillit(int *grid, tetrimino **tetriminos, int size)
 {
 	int     i;
 	int 	gridsize;
-	int 	yesno;
+	int 	brkpoint; // !!!
 
 	i = 0;
+	brkpoint = 10; // !!!
 	(size < 4) ? (gridsize = 16) : (gridsize = size * size);
 	while (size > 0)
 	{
@@ -30,9 +33,11 @@ int         *ft_fillit(int *grid, tetrimino **tetriminos, int size)
 			grid = ft_place_tetro(grid, tetriminos[i]);
 		else
 		{
-			while (ft_check_grid_space(grid, tetriminos[i]) != 1)
+			while (ft_check_grid_space(grid, tetriminos[i]) != 1 && brkpoint != 0)
 			{
-				ft_move_right(tetriminos[i], gridsize, 3);
+				printf("no\n\n");
+				ft_move_forward(tetriminos[i], gridsize, 3);
+				brkpoint--;
 			}
 			grid = ft_place_tetro(grid, tetriminos[i]);
 		}
@@ -59,28 +64,154 @@ static int		*ft_place_tetro(int *grid, tetrimino *tetro)
 	return (grid);
 }
 
-static tetrimino   *ft_move_right(tetrimino *t, int gridsize, int right)
+static tetrimino   *ft_move_forward(tetrimino *t, int gridsize, int right)
 {
 	int		*br;
 	int 	side;
 	int 	i;
+	int 	gridborder;
+	int 	yesno;
 
 	br = ft_grid_border(gridsize, right);
 	side = ft_sqrt(gridsize);
 	i = 0;
+	gridborder = 0;
+	yesno = 1;
 
-//	while (i < side)
-//	{
-//		if (t->p1 + 1 == br[i] || t->p2 + 1 == br[i] || t->p3 + 1 == br[i] || t->p4 + 1 == br[i])
-//
-//	}
+//	for (int d = 0; d < side; d++)
+//		printf("%d ", br[d]);
+//	printf("\n");
 
-//	if (t->p1 + 1 == br[0])
-	t->p1 += 1;
-	t->p2 += 1;
-	t->p3 += 1;
-	t->p4 += 1;
 
+	while (i < side) // проверяю правую границу
+	{
+		if (t->p1 == br[i] || t->p2 == br[i] || t->p3 == br[i] || t->p4 == br[i])
+			gridborder++;
+		i++;
+	}
+	if (gridborder == 0)
+	{
+		t->p1 += 1;
+		t->p2 += 1;
+		t->p3 += 1;
+		t->p4 += 1;
+	}
+	else
+	{
+		ft_move_to_left_border(t, gridsize);
+		t->p1 += side;
+		t->p2 += side;
+		t->p3 += side;
+		t->p4 += side;
+	}
 	free (br);
 	return (t);
 }
+
+
+
+static tetrimino *ft_move_to_left_border(tetrimino *t, int gridsize)
+{
+	int		*br;
+	int		i;
+	int 	side;
+
+	br = ft_grid_border(gridsize, 1);
+	side = ft_sqrt(gridsize);
+	i = 0;
+	while (i < side)
+	{
+		if (br[i] == t->p1 || br[i] == t->p2 || br[i] == t->p3 || br[i] == t->p4)
+			break;
+		t->p1 -= 1;
+		t->p2 -= 1;
+		t->p3 -= 1;
+		t->p4 -= 1;
+		i++;
+	}
+	free(br);
+	ft_puttetro(t);
+	return (t);
+}
+
+static	void ft_puttetro(tetrimino *t)
+{
+	printf("%d ", t->p1);
+	printf("%d ", t->p1);
+	printf("%d ", t->p1);
+	printf("%d\n", t->p1);
+	printf("%c\n", t->letter);
+}
+
+//static tetrimino   *ft_move_forward(tetrimino *t, int gridsize, int right)
+//{
+//	int		*br;
+//	int 	side;
+//	int 	i;
+//	int 	gridborder;
+//	int 	yesno;
+//
+//	br = ft_grid_border(gridsize, right);
+//	side = ft_sqrt(gridsize);
+//	i = 0;
+//	gridborder = 0;
+//	yesno = 1;
+//
+////	for (int d = 0; d < side; d++)
+////		printf("%d ", br[d]);
+////	printf("\n");
+//
+//
+//	while (i < side) // проверяю правую границу
+//	{
+//		if (t->p1 == br[i] || t->p2 == br[i] || t->p3 == br[i] || t->p4 == br[i])
+//			gridborder++;
+//		i++;
+//	}
+//	if (gridborder == 0)
+//	{
+//		t->p1 += 1;
+//		t->p2 += 1;
+//		t->p3 += 1;
+//		t->p4 += 1;
+//	}
+//	else
+//	{
+//		br = ft_grid_border(gridsize, 4);
+//		gridborder = 0;
+//		i = 0;
+//		while (i < side) // проверяю нижнюю границу
+//		{
+//			if (t->p1 == br[i] || t->p2 == br[i] || t->p3 == br[i] || t->p4 == br[i])
+//				gridborder++;
+//			i++;
+//		}
+//		if (gridborder == 0)
+//		{
+//			br = ft_grid_border(gridsize, 1);
+//			gridborder = 0;
+//			i = 0;
+//			while (i < side && yesno == 1)
+//			{
+//				if (t->p1 != br[i] && t->p2 != br[i] && t->p3 != br[i] && t->p4 != br[i])
+//				{
+//					t->p1 -= 1;
+//					t->p2 -= 1;
+//					t->p3 -= 1;
+//					t->p4 -= 1;
+//				}
+//				else
+//				{
+//					yesno = -1;
+//				}
+//				i++;
+//			}
+//		}
+//		else
+//		{
+//			printf("no space\n");
+//		}
+//	}
+//	free (br);
+//	return (t);
+//}

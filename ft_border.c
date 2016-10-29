@@ -19,7 +19,6 @@ static int		*ft_grid_border_left(int start, int end, int side)
 
 	index = 0;
 	border_left = (int*)malloc(sizeof(int) * side);
-	printf("border_left: ");
 	while (start != end + side)
 	{
 		border_left[index] = start;

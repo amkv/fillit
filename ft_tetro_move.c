@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-//static tetrimino   *ft_move_right(tetrimino *tetro, int gridsize)
+//static tetrimino   *ft_move_forward(tetrimino *tetro, int gridsize)
 //{
 //	int     num;
 //

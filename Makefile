@@ -6,7 +6,7 @@
 #    By: akalmyko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/12 10:59:16 by akalmyko          #+#    #+#              #
-#    Updated: 2016/10/27 15:40:00 by akalmyko         ###   ########.fr        #
+#    Updated: 2016/10/28 19:39:12 by akalmyko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,12 +29,13 @@ all: $(NAME)
 $(NAME):
 	clear
 	@#$(CC) $(FLAGS) -c $(CFILES)
-	@#$(CC) $(FLAGS) $(OFILES) -o $(NAME)
+	@$(CC) -c $(CFILES)
+	@$(CC) $(FLAGS) $(OFILES) -o $(NAME)
 	@#./tetri-gen -i -f +5
 	@#./tetri-gen -v -f +5
 	@#cat sample.fillit | cat -e
 	@#./fillit text
-	@clear && gcc -g -fsanitize=address $(FLAGS) $(CFILES) -o fillit
+	@#clear && gcc -g -fsanitize=address $(FLAGS) $(CFILES) -o fillit
 	@./fillit text
 
 fo: clean
