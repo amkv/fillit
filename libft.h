@@ -57,6 +57,10 @@ int				*ft_newgrid(int size);
 int             *ft_fillit(int *grid, tetrimino **tetriminos, int size);
 void            ft_putgrid(int *grid, int size);
 int             *ft_grid_border(int gridsize, int s);
+tetrimino 		*ft_tetro_set_value(tetrimino *tetro, int num);
+int 			*ft_extend_grid(int *grid, int gridsize);
+tetrimino   	*ft_move_forward(tetrimino *t, int gridsize);
+tetrimino 		*ft_move_to_corner(tetrimino *t, int gridsize);
 
 int             ft_sqrt(int num);
 void			ft_ptest(void);
