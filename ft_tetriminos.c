@@ -30,19 +30,19 @@ static  tetrimino   *ft_move_to_corner(tetrimino *shape)
 	yesno = 1;
 	while (index > 0 && yesno == 1)
 	{
-		if (shape->p1 == 0 || shape->p2 == 4 || shape->p3 == 8 || shape->p1 == 12)
+		if (shape->p1 == 0 || shape->p1 == 1 || shape->p1 == 2 || shape->p1 == 3)
 			yesno = 0;
 		else
-			ft_set_minus_value(shape, 1);
+			ft_set_minus_value(shape, 4);
 		index--;
 	}
 	index = 16;
 	while (index > 0 && yesno == 0)
 	{
-		if (shape->p1 == 0 || shape->p2 == 1 || shape->p3 == 2 || shape->p1 == 3)
+		if (shape->p1 == 0 || shape->p2 == 4 || shape->p3 == 4 || shape->p3 == 8)
 			yesno = 1;
 		else
-			ft_set_minus_value(shape, 4);
+			ft_set_minus_value(shape, 1);
 		index--;
 	}
 	return (shape);
