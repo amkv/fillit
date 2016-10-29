@@ -35,7 +35,7 @@ int         *ft_fillit(int *grid, tetrimino **tetriminos, int size)
 		{
 			while (ft_check_grid_space(grid, tetriminos[i]) != 1 && brkpoint != 0)
 			{
-				printf("no\n\n");
+				//printf("no\n\n");
 				ft_move_forward(tetriminos[i], gridsize, 3);
 				brkpoint--;
 			}
@@ -113,21 +113,32 @@ static tetrimino   *ft_move_forward(tetrimino *t, int gridsize, int right)
 static tetrimino *ft_move_to_left_border(tetrimino *t, int gridsize)
 {
 	int		*br;
-	int		i;
 	int 	side;
+	int 	i;
+	int 	counter;
 
 	br = ft_grid_border(gridsize, 1);
 	side = ft_sqrt(gridsize);
 	i = 0;
-	while (i < side)
+	counter = 0;
+	while (1)
 	{
-		if (br[i] == t->p1 || br[i] == t->p2 || br[i] == t->p3 || br[i] == t->p4)
+		i = 0;
+		while (i < side)
+		{
+			if (br[i] == t->p1 || br[i] == t->p2 || br[i] == t->p3 || br[i] == t->p4)
+				counter++;
+			i++;
+		}
+		if (counter == 0)
+		{
+			t->p1 -= 1;
+			t->p2 -= 1;
+			t->p3 -= 1;
+			t->p4 -= 1;
+		}
+		else
 			break;
-		t->p1 -= 1;
-		t->p2 -= 1;
-		t->p3 -= 1;
-		t->p4 -= 1;
-		i++;
 	}
 	free(br);
 	ft_puttetro(t);
@@ -137,9 +148,9 @@ static tetrimino *ft_move_to_left_border(tetrimino *t, int gridsize)
 static	void ft_puttetro(tetrimino *t)
 {
 	printf("%d ", t->p1);
-	printf("%d ", t->p1);
-	printf("%d ", t->p1);
-	printf("%d\n", t->p1);
+	printf("%d ", t->p2);
+	printf("%d ", t->p3);
+	printf("%d\n", t->p4);
 	printf("%c\n", t->letter);
 }
 
