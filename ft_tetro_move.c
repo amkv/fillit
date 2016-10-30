@@ -13,7 +13,7 @@
 #include "libft.h"
 
 static tetrimino 	*ft_move_to_left_border(tetrimino *t, int gridsize);
-static tetrimino 	*ft_move_to_down(tetrimino *t, int gridsize);
+static int 			ft_move_to_down(tetrimino *t, int gridsize);
 static tetrimino 	*ft_move_to_up_border(tetrimino *t, int gridsize);
 
 // left 1
@@ -21,7 +21,7 @@ static tetrimino 	*ft_move_to_up_border(tetrimino *t, int gridsize);
 // right 3
 // down 4
 
-tetrimino   *ft_move_forward(tetrimino *t, int gridsize)
+int   		ft_move_forward(tetrimino *t, int gridsize)
 {
 	int 	i;
 	int		*br;
@@ -41,13 +41,13 @@ tetrimino   *ft_move_forward(tetrimino *t, int gridsize)
 	else
 	{
 		t = ft_move_to_left_border(t, gridsize);
-		t = ft_move_to_down(t, gridsize);
+		return (ft_move_to_down(t, gridsize));
 	}
 	//free (br);
-	return (t);
+	return (1);
 }
 
-static tetrimino *ft_move_to_down(tetrimino *t, int gridsize)
+static int 	ft_move_to_down(tetrimino *t, int gridsize)
 {
 	int 	i;
 	int		*br;
@@ -67,10 +67,10 @@ static tetrimino *ft_move_to_down(tetrimino *t, int gridsize)
 	else
 	{
 		//printf("все закончилось\n");
-		return (t);
+		return (-1);
 	}
 	//free (br);
-	return (t);
+	return (1);
 }
 
 static tetrimino *ft_move_to_left_border(tetrimino *t, int gridsize)

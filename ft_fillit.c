@@ -16,147 +16,87 @@ static int      	ft_check_grid_space(int *g, tetrimino *t);
 static int			*ft_place_tetro(int *grid, tetrimino *tetro);
 static	void 		ft_puttetro(tetrimino *t);
 static int 			*ft_remove_tetro(int *grid, tetrimino *tetro);
-static int			ft_tetro_compare(tetrimino *t1, tetrimino *t2);
+//static int			ft_tetro_compare(tetrimino *t1, tetrimino *t2);
+//static int 			ft_compare_grid(int *grid1, int *grid2, int gridsize);
 
-//int         	*ft_fillit(int *grid, tetrimino **tetro, int size)
-//{
-//	int     	i;
-//	int 		gridsize;
-//	tetrimino	*temp;
-//	int 		sizecopy;
-//	int 		yesno;
-//
-//	i = 0;
-//	yesno = 100;
-//	(size < 4) ? (gridsize = 16) : (gridsize = size * size);
-//	sizecopy = size;
-//	while (size > 0 && yesno > 0)
-////	while (size > 0)
-//	{
-//		if (ft_check_grid_space(grid, tetro[i]) == 1)
-//		{
-//			grid = ft_place_tetro(grid, tetro[i]);
-//			i++;
-//			size--;
-//		}
-//		else
-//		{
-//			temp = tetro[i];
-//			tetro[i] = ft_move_forward(tetro[i], gridsize);
-//			yesno--;
-//			if (ft_tetro_compare(temp, tetro[i]) == 1)
-//			{
-//
-////				grid = ft_extend_grid(grid, gridsize); // расширяю grid, еще без переноса старых тетримо
-////				gridsize = (sizecopy + 1) * (sizecopy + 1);
-////				ft_move_to_corner(tetro[i], gridsize);
-////				grid = ft_remove_tetro(grid, tetro[i - 1]);
-////				i--;
-//			}
-//		}
-//	}
-//	return (grid); // не надо возвращать
-//}
+/*
+int         	ft_fillit(int *grid, tetrimino **tetro, int size)
+{
+	int 		i;
+	int 		gridsize;
+	tetrimino 	*temp;
 
+	i = 0;
+	(size < 4) ? (gridsize = 16) : (gridsize = size * size);
 
-//int         	*ft_fillit(int *grid, tetrimino **tetro, int size)
-//{
-//	int 		i;
-//	int 		gridsize;
-//	tetrimino 	*temp;
-//
-//	i = 0;
-//	(size < 4) ? (gridsize = 16) : (gridsize = size * size);
-//	while (size > 0)
-//	{
-//		if (ft_check_grid_space(grid, tetro[i]) == 1)
-//		{
-//			ft_place_tetro(grid, tetro[i]);
-//			size--;
-//			i++;
-//		}
-//		else
-//		{
-//			temp = tetro[i];
-//			tetro[i] = ft_move_forward(tetro[i], gridsize);
-//			if (ft_tetro_compare(temp, tetro[i]) == 1)
-//			{
-//				i--;
-//				grid = ft_remove_tetro(grid, tetro[i]);
-//				tetro[i] = ft_move_forward(tetro[i], gridsize);
-//			}
-//		}
-//	}
-//	return (grid);
-//}
-
-//int         	ft_fillit(int *grid, tetrimino **tetro, int size)
-//{
-//	int 		i;
-//	int 		gridsize;
-//	tetrimino 	*temp;
-//
-//	i = 0;
-//	(size < 4) ? (gridsize = 16) : (gridsize = size * size);
-//
-	while (tetro) {
-		while () {
-			if (ft_check_grid_space(grid, *tetro) == 1) {
-				grid = ft_place_tetro(grid, *tetro);
+	while (tetro)
+		{
+		while (move)
+		{
+			if (ft_check_grid_space(grid, *tetro) == 1)
+			{
+				ft_place_tetro(grid, *tetro);
 				tetro++;
 				if (ft_fillit(grid, tetro, size) == 1)
 					return (1);
-				grid = ft_remove_tetro(grid, tetro[i]);
+				ft_remove_tetro(grid, tetro[i]);
 			}
-			tetro[i] = ft_move_forward(tetro[i], gridsize);
-
+			ft_move_forward(tetro[i], gridsize);
 		}
 		return (0);
 	}
 	return (1);
-////
-//	ft_check_grid_space(grid, tetro[i]); // return 1 - есть место, -1 - нет места
-//	grid = ft_place_tetro(grid, tetro[i]); // возвращает карту с размещенным тетро
-//	tetro[i] = ft_move_forward(tetro[i], gridsize); // двигает тетро слева направо, вниз - направо
-//	ft_tetro_compare(tetro[i], tetro[i + 1]); // return 1 - если tetro одинаковые, -1 если разные
-//	grid = ft_remove_tetro(grid, tetro[i]); // возвращает карту с очищенным (нулями) местом
-//
-//	return (grid);
-//}
-
-int         	*ft_fillit(int *grid, tetrimino **tetro, int size)
-{
-	int 		index;
-
-	index = 0;
-	while (index < size)
-	{
-		printf("tetro\n");
-		index++;
-	}
 
 	return (grid);
 }
+*/
 
-int 			ft_simple_fillit()
+/*
+	ft_check_grid_space(grid, tetro[i]); 				// return 1 - есть место, -1 - нет места
+	ft_place_tetro(grid, tetro[i]); 					// возвращает grid с размещенным тетро
+	ft_move_forward(tetro[i], gridsize); 				// двигает тетро слева направо, вниз - направо, возвращает 1 если переместился и -1 если уперся в конец карты
+	ft_tetro_compare(tetro[i], tetro[i + 1]); 			// return 1 - если tetro одинаковые, -1 если разные
+	ft_remove_tetro(grid, tetro[i]); 					// возвращает карту с очищенным (нулями) местом
+	ft_move_to_corner(tetrimino tetro[i], gridsize); 	// возвращает тетримо на нулевую позицию (левый верхний угол)
+ 	ft_fillit();										// возвращает int значение (для рекурсии)
+ 	ft_sqrt(gridsize);									// возвращает int квадратный корень
+ 	grid = ft_extend_grid(int *grid, int gridsize);		// доделать(?): возвращает пустую карту с нулями увеличенного размера
+ 	ft_putgrid(grid, size);								// доделать: не печает пересозданный grid, только изначальный
+*/
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+int         	ft_fillit(int i, int *grid, tetrimino **tetro, int gridsize)
 {
-
+//	while (i < ft_sqrt(gridsize))
+//	{
+//		if (ft_check_grid_space(grid, tetro[i]) == 1)
+//		{
+//			ft_place_tetro(grid, tetro[i]);
+//			i++;
+//			if (ft_fillit(i, grid, tetro, gridsize) == 1)
+//				return (1);
+//			else
+//			{
+//				ft_remove_tetro(grid, tetro[i]);
+//				ft_move_to_corner(tetro[i], gridsize);
+//			}
+//
+//		}
+//		else
+//		{
+//			ft_move_forward(tetro[i], gridsize);
+//		}
+//	}
+	ft_place_tetro(grid, tetro[i]);
 	return (1);
 }
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 static int     ft_check_grid_space(int *g, tetrimino *t)
 {
 	if (g[t->p1] == 0 && g[t->p2] == 0 && g[t->p3] == 0 && g[t->p4] == 0)
-		return (1);
-	else
-		return (-1);
-}
-
-static int		ft_tetro_compare(tetrimino *t1, tetrimino *t2)
-{
-	if (t1->p1 == t2->p1 && t1->p2 == t2->p2 && t1->p3 == t2->p3 && t1->p4 == t2->p4)
 		return (1);
 	else
 		return (-1);
@@ -188,6 +128,33 @@ static	void 	ft_puttetro(tetrimino *t)
 	printf("p4: %d\n", t->p4);
 	printf("letter: %c\n\n", t->letter);
 }
+
+//static int 		ft_compare_grid(int *grid1, int *grid2, int gridsize)
+//{
+//	int 	index;
+//	int 	counter;
+//
+//	index = 0;
+//	counter = 0;
+//	while (index < gridsize)
+//	{
+//		if (grid1[index] == grid2[index])
+//			counter++;
+//		index++;
+//	}
+//	if (counter == gridsize)
+//		return (1);
+//	else
+//		return (-1);
+//}
+
+//static int		ft_tetro_compare(tetrimino *t1, tetrimino *t2)
+//{
+//	if (t1->p1 == t2->p1 && t1->p2 == t2->p2 && t1->p3 == t2->p3 && t1->p4 == t2->p4)
+//		return (1);
+//	else
+//		return (-1);
+//}
 
 //	for (int d = 0; d < side; d++)
 //		printf("r%d ", br[d]);

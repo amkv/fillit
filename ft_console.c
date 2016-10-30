@@ -19,6 +19,7 @@ void			ft_console(char *name)
     int			size;
 	tetrimino	**tetriminos;
 	int 		*grid;
+	int 		gridsize;
 
 	map = ft_readfile(name);
 	//ft_putstr(map);
@@ -55,9 +56,11 @@ void			ft_console(char *name)
 	//----------------------------------------------------
 	grid = ft_newgrid(size);
 	//----------------------------------------------------
-	grid = ft_fillit(grid, tetriminos, size);
-	//----------------------------------------------------
+	(size < 4) ? (gridsize = 16) : (gridsize = size * size);
+	ft_fillit(0, grid, tetriminos, gridsize);
 	ft_putgrid(grid, size);
+	//----------------------------------------------------
+	//ft_putgrid(grid, size);
 	//----------------------------------------------------
 	free(map); // поднять выше там где кончается использование
 	free(grid);
