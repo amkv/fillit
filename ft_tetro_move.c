@@ -15,6 +15,7 @@
 static tetrimino 	*ft_move_to_left_border(tetrimino *t, int gridsize);
 static int 			ft_move_to_down(tetrimino *t, int gridsize);
 static tetrimino 	*ft_move_to_up_border(tetrimino *t, int gridsize);
+static int 			ft_check_down(tetrimino *t, int gridsize);
 
 // left 1
 // up 2
@@ -46,6 +47,54 @@ int   		ft_move_forward(tetrimino *t, int gridsize)
 	//free (br);
 	return (1);
 }
+
+
+int   		ft_check_move(tetrimino *t, int gridsize)
+{
+	int 	i;
+	int		*br;
+	int 	gridborder;
+
+	i = 0;
+	gridborder = 0;
+	br = ft_grid_border(gridsize, 3);
+	while (i < ft_sqrt(gridsize)) // проверяю правую границу
+	{
+		if (br[i] == t->p1 || br[i] == t->p2 || br[i] == t->p3 || br[i] == t->p4)
+			gridborder++;
+		i++;
+	}
+	if (gridborder == 0)
+		return (1);
+	else
+		return (ft_check_down(t, gridsize));
+	//free (br);
+	return (1);
+}
+
+static int 	ft_check_down(tetrimino *t, int gridsize)
+{
+	int 	i;
+	int		*br;
+	int 	gridborder;
+
+	i = 0;
+	gridborder = 0;
+	br = ft_grid_border(gridsize, 4); // нижняя граница
+	while (i < ft_sqrt(gridsize)) // проверяю нижнию границу
+	{
+		if (br[i] == t->p1 || br[i] == t->p2 || br[i] == t->p3 || br[i] == t->p4)
+			gridborder++;
+		i++;
+	}
+	if (gridborder == 0)
+		return (1);
+	else
+		return (-1);
+	//free (br);
+}
+
+
 
 static int 	ft_move_to_down(tetrimino *t, int gridsize)
 {

@@ -19,6 +19,10 @@ int				*ft_newgrid(int size)
 	int         gridsize;
 
 	(size < 4) ? (gridsize = 16) : (gridsize = size * size);
+
+//	t = 4 * size;
+//	if ((4 * size)
+
 	index = 0;
 	grid = (int*)malloc(sizeof(int) * gridsize);
 	while (gridsize > 0)

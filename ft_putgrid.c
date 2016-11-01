@@ -26,6 +26,18 @@ int     ft_sqrt(int num)
 	return (sqr);
 }
 
+//int     ft_sqrt(int num)
+//{
+//	int sqr;
+//
+//	sqr = 0;
+//	while ((sqr * sqr) < num)
+//	{
+//		sqr++;
+//	}
+//	return (sqr);
+//}
+
 void    ft_putgrid(int *grid, int size)
 {
 	int index;

@@ -58,6 +58,8 @@ void			ft_console(char *name)
 	//----------------------------------------------------
 	(size < 4) ? (gridsize = 16) : (gridsize = size * size);
 	ft_fillit(0, grid, tetriminos, gridsize);
+	printf("fillit\n");
+	printf("----\n");
 	ft_putgrid(grid, size);
 	//----------------------------------------------------
 	//ft_putgrid(grid, size);
