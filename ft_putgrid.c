@@ -46,6 +46,7 @@ void    ft_putgrid(int *grid, int size)
 	index = 0;
 	(size <= 4 ) ? (newline = 3) : (newline = size - 1);
 	(size <= 4 ) ? (size = 16) : (size *= size);
+//	size = ft_gridsize(size);
 	while (index < size)
 	{
 		//printf(" %d", grid[index]);

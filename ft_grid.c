@@ -12,17 +12,16 @@
 
 #include "libft.h"
 
+int ft_gridsize(int size);
+
 int				*ft_newgrid(int size)
 {
 	int		    *grid;
 	int		    index;
 	int         gridsize;
 
-	(size < 4) ? (gridsize = 16) : (gridsize = size * size);
-
-//	t = 4 * size;
-//	if ((4 * size)
-
+//	(size < 4) ? (gridsize = 16) : (gridsize = size * size);
+	gridsize = ft_gridsize(size);
 	index = 0;
 	grid = (int*)malloc(sizeof(int) * gridsize);
 	while (gridsize > 0)
@@ -32,6 +31,25 @@ int				*ft_newgrid(int size)
 		gridsize--;
 	}
 	return (grid);
+}
+
+int ft_gridsize(int size)
+{
+	int gridsize;
+	int symb;
+
+	if (size <= 4)
+		gridsize = 16;
+	else
+	{
+		symb = size * 4;
+		while (size * size > symb)
+			size--;
+		size++;
+		gridsize = size * size;
+	}
+	printf("gridsize = %d\n", gridsize);
+	return (gridsize);
 }
 
 int 		*ft_extend_grid(int *grid, int gridsize)

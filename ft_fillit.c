@@ -14,40 +14,10 @@
 
 static int      	ft_check_grid_space(int *g, tetrimino *t);
 static int			*ft_place_tetro(int *grid, tetrimino *tetro);
-static	void 		ft_puttetro(tetrimino *t);
+//static	void 		ft_puttetro(tetrimino *t);
 static int 			*ft_remove_tetro(int *grid, tetrimino *tetro);
 //static int			ft_tetro_compare(tetrimino *t1, tetrimino *t2);
 //static int 			ft_compare_grid(int *grid1, int *grid2, int gridsize);
-
-/*
-int         	ft_fillit(int *grid, tetrimino **tetro, int size)
-{
-	int 		i;
-	int 		gridsize;
-	tetrimino 	*temp;
-
-	i = 0;
-	(size < 4) ? (gridsize = 16) : (gridsize = size * size);
-
-	while (tetro)
-		{
-		while (move)
-		{
-			if (ft_check_grid_space(grid, *tetro) == 1)
-			{
-				ft_place_tetro(grid, *tetro);
-				tetro++;
-				if (ft_fillit(grid, tetro, size) == 1)
-					return (1);
-				ft_remove_tetro(grid, tetro[i]);
-			}
-			ft_move_forward(tetro[i], gridsize);
-		}
-		return (0);
-	}
-	return (1);
-}
-*/
 
 /*
 	ft_check_grid_space(grid, tetro[i]); 				// return 1 - есть место, -1 - нет места
@@ -73,133 +43,78 @@ int         	ft_fillit(int *grid, tetrimino **tetro, int size)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+
 int         	ft_fillit(int i, int *grid, tetrimino **tetro, int gridsize)
 {
 	int 		yesno;
+	int         t;
 
 	while (i < ft_sqrt(gridsize))
 	{
 		yesno = -1;
+		t = i;
 		while (ft_check_move(tetro[i], gridsize) == 1)
 		{
-			ft_putgrid(grid, ft_sqrt(gridsize));
-			printf("\n");
-
 			if (yesno != -1)
+			{
+				printf("move...      %d\n", i);
 				ft_move_forward(tetro[i], gridsize);
+			}
 			if (ft_check_grid_space(grid, tetro[i]) == 1)
 			{
+				printf("place...     %d\n\n", i);
 				ft_place_tetro(grid, tetro[i]);
-				if (ft_fillit(++i, grid, tetro, gridsize) == 1)
+				ft_putgrid(grid, ft_sqrt(gridsize));
+				printf("\n");
+				if (ft_fillit(++t, grid, tetro, gridsize) == 1)
 					return (1);
-				ft_remove_tetro(grid, tetro[i]);
+				else
+				{
+					printf("delete...    %d\n", i);
+					--t;
+					ft_remove_tetro(grid, tetro[i]);
+				}
 			}
 			yesno = 1;
 		}
+		printf("to_corner... %d\n", t);
+		ft_move_to_corner(tetro[t], gridsize);
 		return (-1);
 	}
 	return (1);
 }
 
-
-
-
-
-
-//1. запускаю цикл пока есть количество фигур
-//2.	запускаю движение фигур
-//3.		если фигура со своего положения может быть установлена на доску
-//4.			размещаю фигуру
-//5.			перехожу к сл.фигуре
-//6.				запускаю рекурсию ++i;
-//					если рекурсия вернула -1;
-//						удаляю последнее размещение фигуры
-//		продолжаю движение фигуры (пока она не встанет на место)
-//	если движение не может быть продолжено
-//		удаляю фигуру
-//
-//
-//---рекурсия
-//1. запускаю цикл пока есть количество фигур
-//2.	запускаю движение фигур
-//3.		если фигура со своего положения может быть установлена на доску
-//4.			размещаю фигуру
-//5.			перехожу к сл.фигуре
-//6.	8.			запускаю рекурсию ++i;
-//7. 		продолжаю движение фигуры (пока она не встанет на место)
-//
-//
-//---рекурсия
-//1. запускаю цикл пока есть количество фигур
-//2.	запускаю движение фигур
-//3.		если фигура со своего положения может быть установлена на доску
-//4.			размещаю фигуру
-//5.			перехожу к сл.фигуре
-//6.				запускаю рекурсию ++i;
-//7. 		продолжаю движение фигуры (пока она не встанет на место)
-//	если движение не может быть продолжено
-//		возвращаю -1;
-//
-//					если рекурсия вернула -1;
-//						удаляю последнее размещение фигуры
-//		продолжаю движение фигуры (пока она не встанет на место)
-//	если движение не может быть продолжено
-//		удаляю фигуру
-
-
-
-
-
-
-
-
-
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// сокращенный рабочий алгоритм
+//
 //int         	ft_fillit(int i, int *grid, tetrimino **tetro, int gridsize)
 //{
-////	ft_putgrid(grid,ft_sqrt(gridsize));
-////	printf("\n");
+//	int 		yesno;
 //
 //	while (i < ft_sqrt(gridsize))
 //	{
-//		printf("grid\n----\n");
-//		ft_putgrid(grid,ft_sqrt(gridsize));
-//		printf("\n");
-//
-//		if (ft_check_grid_space(grid, tetro[i]) == 1)
+//		yesno = 0;
+//		while (ft_check_move(tetro[i], gridsize) == 1)
 //		{
-//			printf("%d\n%s\n", i, "----");
-//			ft_place_tetro(grid, tetro[i]);
-////			ft_move_to_corner(tetro[i], gridsize);
-////			ft_putgrid(grid,ft_sqrt(gridsize)); printf("\n");
-////			i++;
-//			if (ft_fillit(++i, grid, tetro, gridsize) == 1)
-//				return (1);
-////			else
-////			{
-////				i--;
-//			ft_remove_tetro(grid, tetro[--i]);
-////				ft_move_to_corner(tetro[i], gridsize);
-////				ft_move_forward(tetro[i], gridsize);
-//
-////			}
-//		}
-//		else
-//		{
-//			if (ft_move_forward(tetro[i], gridsize) == -1)
+//			if (yesno++ > 0)
+//				ft_move_forward(tetro[i], gridsize);
+//			if (ft_check_grid_space(grid, tetro[i]) == 1)
 //			{
-////				ft_remove_tetro(grid, tetro[i]);
-//// 				ft_move_to_corner(tetro[i], gridsize);
-////				ft_move_forward(tetro[i], gridsize);
-//				return (-1);
+//				ft_place_tetro(grid, tetro[i]);
+//				if (ft_fillit(++i, grid, tetro, gridsize) == 1)
+//					return (1);
+//				ft_remove_tetro(grid, tetro[--i]);
 //			}
 //		}
+//		ft_move_to_corner(tetro[i], gridsize);
+//		return (-1);
 //	}
 //	return (1);
 //}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 static int     ft_check_grid_space(int *g, tetrimino *t)
 {
@@ -227,14 +142,14 @@ static int		*ft_place_tetro(int *grid, tetrimino *tetro)
 	return (grid);
 }
 
-static	void 	ft_puttetro(tetrimino *t)
-{
-	printf("p1: %d\n", t->p1);
-	printf("p2: %d\n", t->p2);
-	printf("p3: %d\n", t->p3);
-	printf("p4: %d\n", t->p4);
-	printf("letter: %c\n\n", t->letter);
-}
+//static	void 	ft_puttetro(tetrimino *t)
+//{
+//	printf("p1: %d\n", t->p1);
+//	printf("p2: %d\n", t->p2);
+//	printf("p3: %d\n", t->p3);
+//	printf("p4: %d\n", t->p4);
+//	printf("letter: %c\n\n", t->letter);
+//}
 
 //static int 		ft_compare_grid(int *grid1, int *grid2, int gridsize)
 //{

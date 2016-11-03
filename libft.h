@@ -62,6 +62,7 @@ int 			*ft_extend_grid(int *grid, int gridsize);
 int   			ft_move_forward(tetrimino *t, int gridsize);
 tetrimino 		*ft_move_to_corner(tetrimino *t, int gridsize);
 int   			ft_check_move(tetrimino *t, int gridsize);
+int             ft_gridsize(int size);
 
 int             ft_sqrt(int num);
 void			ft_ptest(void);
