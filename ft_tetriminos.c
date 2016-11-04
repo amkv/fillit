@@ -92,7 +92,7 @@ tetrimino			**ft_tetriminos(char **split, int size)
 	int				index;
 	char            *letter;
 
-	shapes = (tetrimino**)malloc(sizeof(tetrimino) * size);
+	shapes = (tetrimino**)malloc(sizeof(tetrimino*) * size);
 	index = 0;
 	letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	while (size > 0)

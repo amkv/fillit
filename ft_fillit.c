@@ -43,17 +43,13 @@ static int 			*ft_remove_tetro(int *grid, tetrimino *tetro);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
 int         	ft_fillit(int i, int *grid, tetrimino **tetro, int gridsize)
 {
 	int 		yesno;
-	int         t;
 
 	while (i < ft_sqrt(gridsize))
 	{
 		yesno = -1;
-		t = i;
 		while (ft_check_move(tetro[i], gridsize) == 1)
 		{
 			if (yesno != -1)
@@ -67,19 +63,18 @@ int         	ft_fillit(int i, int *grid, tetrimino **tetro, int gridsize)
 				ft_place_tetro(grid, tetro[i]);
 				ft_putgrid(grid, ft_sqrt(gridsize));
 				printf("\n");
-				if (ft_fillit(++t, grid, tetro, gridsize) == 1)
+				if (ft_fillit(++i, grid, tetro, gridsize) == 1)
 					return (1);
 				else
 				{
-					printf("delete...    %d\n", i);
-					--t;
+					printf("delete...    %d\n", --i);
 					ft_remove_tetro(grid, tetro[i]);
 				}
 			}
 			yesno = 1;
 		}
-		printf("to_corner... %d\n", t);
-		ft_move_to_corner(tetro[t], gridsize);
+		printf("to_corner... %d\n", i);
+		ft_move_to_corner(tetro[i], gridsize);
 		return (-1);
 	}
 	return (1);
@@ -88,11 +83,12 @@ int         	ft_fillit(int i, int *grid, tetrimino **tetro, int gridsize)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // сокращенный рабочий алгоритм
-//
+
 //int         	ft_fillit(int i, int *grid, tetrimino **tetro, int gridsize)
 //{
 //	int 		yesno;
 //
+////	grid = ft_extend_grid(gridsize);
 //	while (i < ft_sqrt(gridsize))
 //	{
 //		yesno = 0;
