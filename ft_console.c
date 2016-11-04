@@ -25,6 +25,7 @@ void			ft_console(char *name)
 	split = ft_tetro_splitter(map, size);
 	ft_smart_validator(split, size);
 	tetriminos = ft_tetriminos(split, size);
+	//tetriminos = ft_tetro_resizer(tetriminos, size);
 	grid = ft_newgrid(size);
 	ft_fillit(0, grid, tetriminos, ft_gridsize(size));
 	ft_putgrid(grid, size);

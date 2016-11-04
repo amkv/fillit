@@ -20,7 +20,6 @@ int				*ft_newgrid(int size)
 	int		    index;
 	int         gridsize;
 
-//	(size < 4) ? (gridsize = 16) : (gridsize = size * size);
 	gridsize = ft_gridsize(size);
 	index = 0;
 	grid = (int*)malloc(sizeof(int) * gridsize);
@@ -45,12 +44,12 @@ int 		*ft_extend_grid(int gridsize)
 
 	index = 0;
 	side = ft_sqrt(gridsize);
-	printf("old_side: %d\n", side);
+//	printf("old_side: %d\n", side);
 	newside = side + 1;
-	printf("new_side: %d\n", newside);
-	printf("old_gridsize: %d\n", gridsize);
+//	printf("new_side: %d\n", newside);
+//	printf("old_gridsize: %d\n", gridsize);
 	newgridsize = newside * newside;
-	printf("new_gridsize: %d\n", newgridsize);
+//	printf("new_gridsize: %d\n", newgridsize);
 	newgrid = (int*)malloc(sizeof(int) * newgridsize);
 	while (index < newgridsize)
 	{
@@ -58,7 +57,6 @@ int 		*ft_extend_grid(int gridsize)
 		//newgrid[index] = grid[index];
 		index++;
 	}
-
 //	free(grid);
 	return (newgrid);
 }
@@ -92,7 +90,6 @@ int ft_gridsize(int size)
 		size++;
 		gridsize = size * size;
 	}
-//	printf("gridsize = %d\n", gridsize);
 	return (gridsize);
 }
 
@@ -103,19 +100,18 @@ void    ft_putgrid(int *grid, int size)
 	int gridsize;
 
 	index = 0;
-
-//	(size <= 4 ) ? (size = 16) : (size *= size);
 	gridsize = ft_gridsize(size);
-	(size <= 4 ) ? (newline = 3) : (newline = ft_sqrt(gridsize) - 1);
+	if (size <= 4)
+		newline = 3;
+	else
+		newline = ft_sqrt(gridsize) - 1;
 	while (index < gridsize)
 	{
-		//printf(" %d", grid[index]);
 		(grid[index] == 0) ? ft_putchar('.') : ft_putchar(grid[index]);
-//		printf("%c", grid[index]);
 		if (index == newline)
 		{
-			printf("\n");
-			if (size == 16)
+			ft_putchar('\n');
+			if (gridsize == 16)
 				newline = newline + 4;
 			else
 				newline = ft_sqrt(gridsize) + newline;
