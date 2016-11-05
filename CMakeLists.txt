@@ -28,6 +28,7 @@ set(SOURCE_FILES
 	ft_tetro_move.c
 	ft_border.c
 	ft_fillit.c
+	ft_tetro_resizer.c
     libft.h
     main.c)
 

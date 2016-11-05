@@ -19,7 +19,7 @@ CFILES += ft_strcpy.c ft_strnew.c ft_bzero.c ft_strncpy.c
 CFILES += ft_readfile.c ft_tetro_splitter.c ft_exit_error.c
 CFILES += ft_ptest.c ft_putnstr.c ft_validator.c ft_smart_validator.c
 CFILES += ft_tetriminos.c ft_grid.c ft_putgrid.c ft_tetro_move.c
-CFILES += ft_border.c ft_fillit.c
+CFILES += ft_border.c ft_fillit.c ft_tetro_resizer.c
 OFILES = $(CFILES:.c=.o)
 
 .PHONY: all clean fclean re

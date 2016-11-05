@@ -6,7 +6,7 @@
 /*   By: akalmyko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:40:59 by akalmyko          #+#    #+#             */
-/*   Updated: 2016/10/13 12:41:01 by akalmyko         ###   ########.fr       */
+/*   Updated: 2016/11/04 16:37:41 by akalmyko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void			ft_console(char *name)
 	split = ft_tetro_splitter(map, size);
 	ft_smart_validator(split, size);
 	tetriminos = ft_tetriminos(split, size);
-	//tetriminos = ft_tetro_resizer(tetriminos, size);
+	tetriminos = ft_tetro_resizer(tetriminos, size);
 	grid = ft_newgrid(size);
-	ft_fillit(0, grid, tetriminos, ft_gridsize(size));
+	ft_fillit(0, grid, tetriminos, ft_gridsize(size), size);
 	ft_putgrid(grid, size);
 }
 
